@@ -1,0 +1,51 @@
+---
+ip: "192.168.11.11"
+name: Vagrant
+memory: 2048
+cpus: 2
+gui: false
+provider: virtualbox
+
+authorize: ~/.ssh/id_rsa.pub
+
+db_root_pwd: 'secret'
+
+keys:
+    - ~/.ssh/id_rsa
+
+copy:
+    - from: ~/Projects/Frappe/vagrant/scripts/database/install.sh
+      to: /home/vagrant/mariadb.sh
+
+    - from: ~/Projects/Frappe/vagrant/resources/mariadb.cnf
+      to: /home/vagrant/mariadb.cnf
+
+folders:
+    - map: ~/Projects/Frappe
+      to: /home/vagrant/code
+
+databases:
+    - vagrant
+
+features:
+    - name: 'nginx'
+      service:
+          name: 'nginx'
+          enabled: true
+
+    - name: 'git'
+
+    - name: 'redis'
+
+    - name: 'nodejs'
+
+    - name: 'python'
+
+    - name: 'wkhtmltopdf'
+
+    - name: 'bench'
+
+# ports:
+#     - guest: 80
+#       host: 8000
+#       protocol: 'tcp'
