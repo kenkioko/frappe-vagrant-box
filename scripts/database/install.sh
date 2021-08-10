@@ -50,5 +50,6 @@ mysql_upgrade --user="root" --verbose --force
 # Restart MariaDB Service
 service mysql restart
 
-# Unset the default password
+# Unset env variables
 unset MYSQL_PWD
+unset DEBIAN_FRONTEND
