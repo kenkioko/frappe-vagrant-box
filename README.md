@@ -1,4 +1,4 @@
-# Vagrant Box
+# Frappe Vagrant Box
 A vagrant box that uses `hashicorp/bionic64` box.
 This box is useful to develop Frappe apps.
 
