@@ -14,15 +14,17 @@ keys:
     - ~/.ssh/id_rsa
 
 copy:
-    - from: ~/Projects/Frappe/vagrant/scripts/database/install.sh
-      to: /home/vagrant/mariadb.sh
+    - from: ./resources/mariadb.cnf
+      to: /home/vagrant/mariadb
 
-    - from: ~/Projects/Frappe/vagrant/resources/mariadb.cnf
-      to: /home/vagrant/mariadb.cnf
+# folders:
+#     - map: ~/Projects/Frappe
+#       to: /home/vagrant/code
 
-folders:
-    - map: ~/Projects/Frappe
-      to: /home/vagrant/code
+db_users:
+    - user: 'frappe'
+      password: 'secret'
+      is_default: false
 
 databases:
     - vagrant

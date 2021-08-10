@@ -34,7 +34,7 @@ Vagrant.configure("2") do |config|
   settings['script_dir'] = scriptsPath
 
   # Provision the Vagrant box
-  provisionPath = scriptsPath + '/vagrant'
+  provisionPath = scriptsPath + '/provision'
 
   require File.expand_path(provisionPath + '/provider.rb')
   require File.expand_path(provisionPath + '/ssh.rb')
@@ -48,12 +48,13 @@ Vagrant.configure("2") do |config|
   # Configure VM SSH
   SSH.configure(config, settings)
 
-  # Configure VM Features
-  Feature.configure(config, settings)
-
   # Configure Files and Folders
   Folder.configure(config, settings)
 
-  # # Configure VM MariaDB
+  # Configure VM Features
+  Feature.configure(config, settings)
+
+  # Configure VM MariaDB
   Database.configure(config, settings)
+
 end

@@ -4,7 +4,7 @@ class Feature
     # Install opt-in features
     if settings.has_key?('features')
       # Update Apt
-      config.vm.provision "shell", inline: <<-SHELL
+      config.vm.provision "shell", name: "Update apt sources",  inline: <<-SHELL
         apt-get update
       SHELL
 
@@ -35,14 +35,14 @@ class Feature
 
           # enable service on boot
           if feature_service.has_key?('enabled') && feature_service['enabled']
-            config.vm.provision "shell", inline: <<-SHELL
+            config.vm.provision "shell", name:"Enabling service #{service_name}", inline: <<-SHELL
               systemctl start #{service_name}
               systemctl enable #{service_name}
             SHELL
           end
         end
 
-        # provision service
+        # end provision service
         config.vm.provision "shell", inline: "echo Finishing feature: #{feature_name} \n"
 
       end

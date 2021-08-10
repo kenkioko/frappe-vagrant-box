@@ -1,18 +1,10 @@
 #!/usr/bin/env bash
 
-cat > /root/.my.cnf << EOF
-[client]
-user = homestead
-password = secret
-host = localhost
-EOF
-
-cp /root/.my.cnf /home/vagrant/.my.cnf
-
 DB=$1;
+mysql=$(pidof mysqld)
 mariadb=$(pidof mariadbd)
 
-if [ -z "$mariadb" ]
+if [ -z "$mysql" ] && [ -z "$mariadb" ]
 then
       # Skip Creating MariaDB database
       echo "We didn't find a PID for mariadb, skipping \$DB creation"
