@@ -20,7 +20,7 @@ class Database
     if settings.has_key?('db_users')
       settings['db_users'].each do |db_user|
         config.vm.provision 'shell' do |s|
-          s.name = "Creating MariaDB User: #{db_user}"
+          s.name = "Creating MariaDB User: #{db_user['user']}"
           s.path = db_script_dir + '/create_user.sh'
           s.args = [settings['db_root_pwd'], db_user['user'], db_user['password']]
         end
